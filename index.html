@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Campos para Textbox</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      input[type="checkbox"] {
+        margin-bottom: 10px;
+      }
+
+      textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Campos para Textbox</h1>
+
+    <div class="input-container">
+      <label for="campo1">Tabela:</label>
+      <input type="text" id="campo1" placeholder="Tabela" />
+
+      <label for="campo2">Campo:</label>
+      <input type="text" id="campo2" placeholder="Campo na tabela / label" />
+
+      <label for="campo3">Requerido:</label>
+      <input type="checkbox" id="campo3" />
+
+      <label for="campo4">Habilita filtro:</label>
+      <input type="checkbox" id="campo4" />
+    </div>
+
+    <br />
+
+    <textarea
+      id="textbox"
+      rows="5"
+      cols="50"
+      placeholder="Campos preenchidos aparecerão aqui"
+    ></textarea>
+
+    <script>
+      const campo1 = document.getElementById("campo1");
+      const campo2 = document.getElementById("campo2");
+      const campo3 = document.getElementById("campo3");
+      const campo4 = document.getElementById("campo4");
+      const textbox = document.getElementById("textbox");
+
+      campo1.addEventListener("input", atualizarTextbox);
+      campo2.addEventListener("input", atualizarTextbox);
+      campo3.addEventListener("input", atualizarTextbox);
+      campo4.addEventListener("input", atualizarTextbox);
+
+      function atualizarTextbox() {
+        const camposPreenchidos = [];
+
+        if (campo1.value) {
+          camposPreenchidos.push(`Tabela: ${campo1.value}`);
+        }
+
+        if (campo2.value) {
+          camposPreenchidos.push(`Campo: ${campo2.value}`);
+        }
+
+        if (campo3.checked) {
+          camposPreenchidos.push(
+            `Requerido: ${campo3.checked ? "Sim" : "Não"}`
+          );
+        }
+        if (campo4.checked) {
+          camposPreenchidos.push(`Filtrado: ${campo4.checked ? "Sim" : "Não"}`);
+        }
+
+        textbox.value = camposPreenchidos.join("\n");
+      }
+    </script>
+  </body>
+</html>
